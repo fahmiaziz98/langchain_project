@@ -15,17 +15,30 @@ The available tools are as follows:
 ![sample_tool](img/sample_tool.png)
 
 ## Instruction
-- Install python 3.9 or higher
-- Create [OpenAI](https://platform.openai.com/) account, and get your [API_KEYS](https://platform.openai.com/account/api-keys). Save the API_KEY as an environment variable.
-- Create a [Pinecone](pinecone.io) account there is a free tier. Take note of the Pinecone API and environment values.
-- Run the notebook 'store_embeddings.ipynb'. Replace the Pinecone and OpenAI API keys (for the embedding model) with your own.
-- Clone the repo to a local directory.
+1. Install python 3.9 or higher
+2. Create [OpenAI](https://platform.openai.com/) account and obtain your  [API_KEYS](https://platform.openai.com/account/api-keys). Replace the OpenAI API keys in the `.env.default` file with your own.
+3.  Create a [Pinecone](pinecone.io) account there is a free tier. Take note of the Pinecone API and environment values. Replace the Pinecone API keys in the `.env.default` file with your own.
+4.  Open your terminal or command prompt and navigate to your desired directory.
     ```
     git clone https://github.com/fahmiaziz98/langchain_project.git
     ```
-- Navigate to the local directory and run this command in your terminal  `cd langchain_project\autonomus-hr-chatbot` then install all prerequisite modules  `pip install -r requirements.txt`
-- Input your own API keys in the app_backend.py file 
-- Run `streamlit run app_frontend.py` in your terminal
+5. After the repository has been successfully cloned, navigate to the `autonomous-hr-chatbot` directory:
+    ```
+    cd langchain_project\autonomus-hr-chatbot
+    ```
+6. Install the required dependencies by running the following command:
+    ```
+    pip install -r requirements.txt
+    ```
+7. Run the Python script to store the embeddings:
+    ```
+    python store_embeddings.py
+    ```
+8. Finally, launch the chatbot's frontend by running the following command:
+    ```
+    streamlit run app_frontend.py
+    ```
+Make sure to replace the necessary API keys in the .env.default file and review any additional configuration steps mentioned in the project's documentation.
 
 ## Conclusion
 The HR-ChatBot project aims to streamline HR-related tasks and provide efficient assistance through the use of LLM technology. By leveraging LangChain's agent and tool modules, along with powerful language models such as ChatGPT or gpt-3.5-turbo, the chatbot is able to handle a variety of HR queries and perform calculations.
