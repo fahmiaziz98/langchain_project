@@ -19,11 +19,11 @@ The available tools are as follows:
 - Create [OpenAI](https://platform.openai.com/) account, and get your [API_KEYS](https://platform.openai.com/account/api-keys). Save the API_KEY as an environment variable.
 - Create a [Pinecone](pinecone.io) account there is a free tier. Take note of the Pinecone API and environment values.
 - Run the notebook 'store_embeddings.ipynb'. Replace the Pinecone and OpenAI API keys (for the embedding model) with your own.
-Clone the repo to a local directory.
+- Clone the repo to a local directory.
     ```
     git clone https://github.com/fahmiaziz98/langchain_project.git
     ```
-- Navigate to the local directory and run this command in your terminal to install all prerequisite modules  `pip install -r requirements.txt`
+- Navigate to the local directory and run this command in your terminal  `cd langchain_project\autonomus-hr-chatbot` then install all prerequisite modules  `pip install -r requirements.txt`
 - Input your own API keys in the app_backend.py file 
 - Run `streamlit run app_frontend.py` in your terminal
 
