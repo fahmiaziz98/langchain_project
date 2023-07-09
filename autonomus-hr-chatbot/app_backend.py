@@ -11,17 +11,17 @@ from langchain.agents import initialize_agent, Tool
 from langchain.agents import AgentType
 from langchain import LLMMathChain
 
+from settings import SETTINGS
+
 # initialize pinecone client and connect to pinecone index
 pinecone.init(      
-	api_key='65cd1f0b-fa6c-42dc-902e-5be9acffa7c5',      
-	environment='us-west1-gcp-free'      
+	api_key=SETTINGS["PINECONE_API_KEY"],      
+	environment=SETTINGS["PINECONE_ENV_NAME"]      
 )      
 index = pinecone.Index('tk-policy')
 
 # initialize embeddings object; for use with user query/input
-embed = OpenAIEmbeddings(
-                model = 'text-embedding-ada-002'
-            )
+embed = OpenAIEmbeddings(model='text-embedding-ada-002', openai_api_key=SETTINGS["OPENAI_API_KEY"])
 
 # initialize langchain vectorstore(pinecone) object
 text_field = 'text' # key of dict that stores the text metadata in the index
@@ -31,7 +31,8 @@ vectorstore = Pinecone(
 
 llm = ChatOpenAI(    
     model_name="gpt-3.5-turbo", 
-    temperature=0.0
+    temperature=0.0,
+    openai_api_key=SETTINGS["OPENAI_API_KEY"]
     )
 
 # initialize vectorstore retriever object
@@ -91,9 +92,6 @@ tools = [
         """
     )
 ]
-# <user>: How much salary will I receive per month?
-#         <assistant>: df[df['name'] == '{user}']['basic_pay_in_php'] 
-#         <assistant>: You will be paid Php n per month.'
 
 # change the value of the prefix argument in the initialize_agent function. This will overwrite the default prompt template of the zero shot agent type
 agent_kwargs = {'prefix': f'You are friendly HR assistant. You are tasked to assist the current user: {user} on questions related to HR. You have access to the following tools:'}
