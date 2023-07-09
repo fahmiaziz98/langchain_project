@@ -1,0 +1,5 @@
+langchain
+streamlit
+streamlit-chat
+pinecone-client
+pandas
