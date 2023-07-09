@@ -1,6 +1,5 @@
 # Autonomus HR-ChatBot
 ## Description
-Description
 HR ChatBot is an endeavor to create a prototype enterprise application that utilizes LLM (Large Language Model) and implements its concepts. This ChatBot is built using LangChain's agent and tool modules and powered by ChatGPT or gpt-3.5-turbo models, with Pinecone serving as the vector database. The user interface is developed using Streamlit and the streamlit_chat component. I provide three tools in this ChatBot: Timekeeping Policy, Employee Data, and Calculator. Each tool is accompanied by a description to assist the LLM in determining the specific situations where the tool is best suited. The more detailed the description, the better the results obtained.
 
 The available tools are as follows:
