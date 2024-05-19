@@ -1,8 +1,6 @@
 # Innovative Project Solutions with LangChain's Language-Driven Approach
 
-
-![architecture_llm](img/llm_architectur.webp)
-
+<img src="img/llm_apps.jpg">
 
 Here is a collection of LLM projects that I have created. Feel free to utilize these projects according to your needs. Harness the power of language and let these projects assist you in your various endeavors. Explore new possibilities and gain fresh insights with the help of these versatile language models. Don't hesitate to maximize your creativity with these projects and witness the wonders they can bring to your applications. Unlock the potential of artificial intelligence (AI) and embark on a journey of innovation and discovery. Together, let's surpass existing boundaries and discover new possibilities with this language technology.
 
