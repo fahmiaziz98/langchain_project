@@ -18,6 +18,7 @@ def get_chat_model() -> BaseChatModel:
 
     logger.info(f'Loading Cohere model...')
     llm = ChatCohere(
+            cache=True,
             model="command-r-plus",
             temperature=0.1,
             cohere_api_key=COHERE_API_KEY
