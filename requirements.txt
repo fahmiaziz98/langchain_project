@@ -1,0 +1,8 @@
+pysqlite3-binary
+streamlit==1.33.0
+langchain
+langchain-community
+langchain-experimental
+langchain-chroma
+langchain-cohere
+pypdf
