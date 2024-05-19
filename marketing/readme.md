@@ -16,7 +16,7 @@ Sample data can be found on Kaggle: [Flipkart Product](https://www.kaggle.com/da
     ```
 2. Copy the example environment file and update it with your API key.
     ```bash
-    cp .env.example .env
+    cp .env.default .env
     ```
 3. Edit the .env file to include your Cohere API key:
     ```bash

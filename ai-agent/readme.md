@@ -16,7 +16,7 @@ RAG Agent is an application that uses the `command-r-plus` model from Cohere to 
     ```
 2. Copy the example environment file and update it with your API key.
     ```bash
-    cp .env.example .env
+    cp .env.default .env
     ```
 3. Edit the .env file to include your Cohere & TavilySearch API key:
     ```bash
