@@ -6,3 +6,6 @@ langchain-experimental
 langchain-chroma
 langchain-cohere
 pypdf
+langserve
+fastapi
+uvicorn
