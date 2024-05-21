@@ -29,7 +29,17 @@ Make sure you have Python 3.10 or newer installed on your system.
     ```bash
     pip install -r requirements.txt
     ```
-4. After the installation process is complete, move to the directory you want and follow each step.
+4. Copy the example environment file and update it with your API key.
+    ```bash
+    cp .env.default .env
+    ```
+5. Edit the .env file to include your Cohere & TavilySearch API key:
+    ```bash
+    COHERE_API_KEY=your_cohere_api_key_here
+    TAVILY_API_KEY=your_tavily_api_key_here
+    ....
+    ```
+6. After the installation process is complete, move to the directory you want and follow each step.
 
 ## Deactivating the Virtual Environment
 After trying the application, you can deactivate the virtual environment by running the following command:

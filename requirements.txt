@@ -7,5 +7,6 @@ langchain-chroma
 langchain-cohere
 pypdf
 langserve
+sse_starlette
 fastapi
 uvicorn
