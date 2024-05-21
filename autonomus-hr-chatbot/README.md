@@ -14,26 +14,22 @@ The available tools are as follows:
 ![sample_tool](img/sample_tool.png)
 
 ## Instruction
-1. Install python 3.9 or higher
-2. Create [OpenAI](https://platform.openai.com/) account and obtain your  [API_KEYS](https://platform.openai.com/account/api-keys). Replace the OpenAI API keys in the `.env.default` file with your own.
-3.  Create a [Pinecone](pinecone.io) account there is a free tier. Take note of the Pinecone API and environment values. Replace the Pinecone API keys in the `.env.default` file with your own.
-4.  Open your terminal or command prompt and navigate to your desired directory.
+
+1. Create [OpenAI](https://platform.openai.com/) account and obtain your  [API_KEYS](https://platform.openai.com/account/api-keys). Replace the OpenAI API keys in the `.env.default` file with your own.
+2.  Create a [Pinecone](pinecone.io) account there is a free tier. Take note of the Pinecone API and environment values. Replace the Pinecone API keys in the `.env.default` file with your own.
+3. After the repository has been successfully cloned, navigate to the `autonomous-hr-chatbot` directory:
     ```
-    git clone https://github.com/fahmiaziz98/langchain_project.git
+    cd autonomus-hr-chatbot
     ```
-5. After the repository has been successfully cloned, navigate to the `autonomous-hr-chatbot` directory:
-    ```
-    cd langchain_project\autonomus-hr-chatbot
-    ```
-6. Install the required dependencies by running the following command:
+4. Install the required dependencies by running the following command:
     ```
     pip install -r requirements.txt
     ```
-7. Run the Python script to store the embeddings:
+5. Run the Python script to store the embeddings:
     ```
     python store_embeddings.py
     ```
-8. Finally, launch the chatbot's frontend by running the following command:
+6. Finally, launch the chatbot's frontend by running the following command:
     ```
     streamlit run app_frontend.py
     ```

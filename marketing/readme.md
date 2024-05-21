@@ -14,21 +14,10 @@ Sample data can be found on Kaggle: [Flipkart Product](https://www.kaggle.com/da
     ```bash
     cd marketing
     ```
-2. Copy the example environment file and update it with your API key.
+2. After installing all dependencies, you can run the Streamlit application with the following command:
     ```bash
-    cp .env.default .env
+    streamlit run app.py
     ```
-3. Edit the .env file to include your Cohere API key:
-    ```bash
-    COHERE_API_KEY=your_cohere_api_key_here
-    ```
-
-## Running the Application
-
-After installing all dependencies, you can run the Streamlit application with the following command:
-```bash
-streamlit run app.py
-```
 
 ## Usage
 1. Upload Your Data
