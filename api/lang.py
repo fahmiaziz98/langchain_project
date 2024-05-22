@@ -1,5 +1,4 @@
 import os
-from langchain_core.messages import AIMessage, HumanMessage
 from langchain_cohere.chat_models import ChatCohere
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
