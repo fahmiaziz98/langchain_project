@@ -21,6 +21,14 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 - What’s the average billing amount for emergency visits by hospital?
 - Which state had the largest percent increase inedicaid visits from 2022 to 2023?
 
+## Tech Stack
+- Python 3.10.11
+- Langchain
+- Cohere LLM
+- Neo4j Database
+- FastAPI (Backend)
+- Streamlit (Frontend)
 
 ## Resouces
+- [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
 - [5 pragmatic strategies for cost optimization with llm](https://www.metadocs.co/2024/04/03/5-pragmatic-strategies-for-cost-optimization-with-llm/)
