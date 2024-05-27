@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  neo4j_etl:
+    build:
+      context: ./neo4j_etl
+    env_file:
+      - .env
+
+## -----------+++++-----------------##
