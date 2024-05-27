@@ -2,8 +2,9 @@
 <img src="llm.avif">
 
 ## Understand the Problem and Requirements
-We want answers to ad-hoc questions about patients, visits, doctors, hospitals, and insurance payers without having to understand SQL-like query languages, request reports from analysts, or wait for someone to build dashboards.
+**Note:** For research, we will use number data 20 each data like review, etc, Because Cohere Embedding have a limit
 
+We want answers to ad-hoc questions about patients, visits, doctors, hospitals, and insurance payers without having to understand SQL-like query languages, request reports from analysts, or wait for someone to build dashboards.
 To accomplish this, stakeholders wanted an internal chatbot tool, similar to ChatGPT, that could answer questions about company data. After meeting to gather requirements, we came up with a list of the types of questions the chatbot should answer:
 
 - What is the current wait time at XYZ hospital?

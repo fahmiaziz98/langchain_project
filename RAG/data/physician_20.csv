@@ -1,0 +1,21 @@
+physician_name,physician_id,physician_dob,physician_grad_year,medical_school,salary
+Joseph Johnson,0,1970-02-22,2000-02-22,Johns Hopkins University School of Medicine,309534.15507605654
+Jason Williams,1,1982-12-22,2012-12-22,Mayo Clinic Alix School of Medicine,281114.5035585275
+Jesse Gordon,2,1959-06-03,1989-06-03,David Geffen School of Medicine at UCLA,305845.5846360554
+Heather Smith,3,1965-06-15,1995-06-15,NYU Grossman Medical School,295239.7666886809
+Kayla Hunter DDS,4,1978-10-19,2008-10-19,David Geffen School of Medicine at UCLA,298751.35520122456
+Christopher Jordan,5,1989-11-04,2019-11-04,NYU Grossman Medical School,316681.6994348657
+Elaine Medina,6,1957-12-24,1987-12-24,Baylor College of Medicine,283743.0262683436
+Donna Mcintyre,7,1987-03-12,2017-03-12,Perelman School of Medicine (University of Pennsylvania),319166.7313781032
+Richard Tucker,8,1983-04-02,2013-04-02,Perelman School of Medicine (University of Pennsylvania),347019.2359991686
+Kimberly Oliver,9,1989-06-02,2019-06-02,Stanford University School of Medicine,310293.2724885527
+Christopher Williamson,10,1974-01-22,2004-01-22,"University of California, San Francisco School of Medicine",276537.129441826
+Cory Campbell,11,1988-11-08,2018-11-08,Stanford University School of Medicine,281549.4596598061
+Cathy Church,12,1951-12-30,1981-12-30,NYU Grossman Medical School,292552.1129764465
+Kristopher Wiley Jr.,13,1951-11-30,1981-11-30,Yale School of Medicine,282153.29108791304
+Denise Chavez,14,1969-09-04,1999-09-04,Columbia University Vagelos College of Physicians and Surgeons,270264.5907116985
+Jason Merritt,15,1989-09-25,2019-09-25,Johns Hopkins University School of Medicine,304632.2183088508
+Jacqueline Mcneil DVM,16,1988-02-14,2018-02-14,Columbia University Vagelos College of Physicians and Surgeons,293364.08004822605
+Veronica Moore,17,1970-04-06,2000-04-06,University of Chicago Pritzker School of Medicine,305691.62650674174
+Steven Watson,18,1961-06-03,1991-06-03,Columbia University Vagelos College of Physicians and Surgeons,335591.62236645864
+Ryan Brown,19,1961-12-09,1991-12-09,Harvard Medical School,292909.4149822692
