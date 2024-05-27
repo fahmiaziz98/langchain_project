@@ -29,6 +29,8 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 - FastAPI (Backend)
 - Streamlit (Frontend)
 
+*This is a common theme in AI and ML projects—most of the work is in design, data preparation, and deployment rather than building the AI itself.*
+
 ## Resouces
 - [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
 - [5 pragmatic strategies for cost optimization with llm](https://www.metadocs.co/2024/04/03/5-pragmatic-strategies-for-cost-optimization-with-llm/)
