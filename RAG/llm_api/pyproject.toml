@@ -1,0 +1,17 @@
+[project]
+name = "llm_api"
+version = "0.1"
+dependencies = [
+    "asyncio==3.4.3",
+    "fastapi==0.111.0",
+    "langchain==0.1.20",
+    "langchain-cohere==0.1.4",
+    "neo4j==5.14.1",
+    "numpy==1.26.2",
+    "cohere==5.4.0",
+    "opentelemetry-api==1.22.0",
+    "pydantic==2.7.1",
+    "uvicorn==0.29.0"
+]
+[project.optional-dependencies]
+dev = ["black", "flake8"]
