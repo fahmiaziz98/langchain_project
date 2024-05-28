@@ -28,6 +28,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def create_embedding():
+    logger.info("Load CohereEmbedding...")
     return CohereEmbeddings(cohere_api_key=COHERE_API_KEY)
 
 def setup_neo4j_vector_index(embedding):
@@ -134,15 +135,15 @@ def run_query(vector_chain, query):
         logger.warning("No result found in response")
         return None
 
-if __name__ == "__main__":
-    logger.info("Setting up...")
-    try:
-        vector_chain = setup_vector_chain()
-        query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
-        response = run_query(vector_chain, query)
-        if response:
-            print(response)
-        else:
-            print("No response received.")
-    except Exception as e:
-        logger.error(f"Error in main execution: {e}")
+# if __name__ == "__main__":
+#     logger.info("Setting up...")
+#     try:
+#         vector_chain = setup_vector_chain()
+#         query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
+#         response = run_query(vector_chain, query)
+#         if response:
+#             print(response)
+#         else:
+#             print("No response received.")
+#     except Exception as e:
+#         logger.error(f"Error in main execution: {e}")
