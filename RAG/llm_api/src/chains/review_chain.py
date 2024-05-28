@@ -24,14 +24,14 @@ logger = logging.getLogger(__name__)
 
 def setup_vector_chain():
     logger.info("Setting up vector chain...")
+    embedding = CohereEmbeddings(cohere_api_key=COHERE_API_KEY)
 
     try:
         neo4j_vector_index = Neo4jVector.from_existing_graph(
-            embedding=CohereEmbeddings(cohere_api_key=COHERE_API_KEY),
+            embedding=embedding,
             url=NEO4J_URI,
             username=NEO4J_USERNAME,
             password=NEO4J_PASSWORD,
-            search_type="hybrid",
             index_name="reviews",
             node_label="Review",
             text_node_properties=[
@@ -43,8 +43,20 @@ def setup_vector_chain():
             embedding_node_property="embedding",
         )
     except Exception as e:
-        logger.error(f"Error setting up Neo4j vector index: {e}")
-        raise
+        logger.error(f"Error setting up Neo4j vector index from graph: {e}")
+        try:
+            neo4j_vector_index = Neo4jVector.from_existing_index(
+                embedding=embedding,
+                url=NEO4J_URI,
+                username=NEO4J_USERNAME,
+                password=NEO4J_PASSWORD,
+                index_name="reviews",
+                node_label="Review",
+                embedding_node_property="embedding",
+            )
+        except Exception as e:
+            logger.error(f"Error setting up Neo4j vector index from existing index: {e}")
+            raise
 
     review_template = """
     Your job is to use patient reviews to answer questions about their experience at a hospital. 

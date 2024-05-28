@@ -35,3 +35,7 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 ## Resouces
 - [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
 - [5 pragmatic strategies for cost optimization with llm](https://www.metadocs.co/2024/04/03/5-pragmatic-strategies-for-cost-optimization-with-llm/)
+- [Github sauravjoshi23](https://github.com/sauravjoshi23/towards-agi/)
+- [Github tomasonjo](https://github.com/tomasonjo/langchain2neo4j)
+- [Github axolotl0212](https://github.com/axolotl0212/langchain-neo4j-knowledge-graph-demo)
+- [freedium](https://freedium.cfd/https://medium.com/microsoftazure/introducing-graphrag-with-langchain-and-neo4j-90446df17c1e)
