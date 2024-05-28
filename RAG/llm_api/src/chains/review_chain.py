@@ -19,13 +19,21 @@ NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[logging.StreamHandler()],
+)
 logger = logging.getLogger(__name__)
 
-def setup_vector_chain():
-    logger.info("Setting up vector chain...")
-    embedding = CohereEmbeddings(cohere_api_key=COHERE_API_KEY)
+def create_embedding():
+    return CohereEmbeddings(cohere_api_key=COHERE_API_KEY)
 
+def setup_neo4j_vector_index(embedding):
+    neo4j_vector_index = None
+
+    logger.info("Attempting to set up Neo4j vector index from existing graph...")
     try:
         neo4j_vector_index = Neo4jVector.from_existing_graph(
             embedding=embedding,
@@ -43,7 +51,10 @@ def setup_vector_chain():
             embedding_node_property="embedding",
         )
     except Exception as e:
-        logger.error(f"Error setting up Neo4j vector index from graph: {e}")
+        logger.warning(f"Failed to set up Neo4j vector index from existing graph: {e}")
+
+    if not neo4j_vector_index:
+        logger.info("Attempting to set up Neo4j vector index from existing index...")
         try:
             neo4j_vector_index = Neo4jVector.from_existing_index(
                 embedding=embedding,
@@ -55,8 +66,18 @@ def setup_vector_chain():
                 embedding_node_property="embedding",
             )
         except Exception as e:
-            logger.error(f"Error setting up Neo4j vector index from existing index: {e}")
-            raise
+            logger.error(f"Failed to set up Neo4j vector index from existing index: {e}")
+
+    if not neo4j_vector_index:
+        raise RuntimeError("Failed to set up Neo4j vector index")
+
+    return neo4j_vector_index
+
+def setup_vector_chain():
+    logger.info("Setting up vector chain...")
+    embedding = create_embedding()
+
+    neo4j_vector_index = setup_neo4j_vector_index(embedding)
 
     review_template = """
     Your job is to use patient reviews to answer questions about their experience at a hospital. 
@@ -85,48 +106,43 @@ def setup_vector_chain():
         messages=messages
     )
 
-    try:
-        vector_chain = RetrievalQA.from_chain_type(
-            llm=ChatCohere(
-                model=HOSPITAL_QA_MODEL,
-                cohere_api_key=COHERE_API_KEY,
-                temperature=0.1
-            ),
-            chain_type="stuff",
-            retriever=neo4j_vector_index.as_retriever(k=10),
-        )
+    vector_chain = RetrievalQA.from_chain_type(
+        llm=ChatCohere(
+            model=HOSPITAL_QA_MODEL,
+            cohere_api_key=COHERE_API_KEY,
+            temperature=0.1
+        ),
+        chain_type="stuff",
+        retriever=neo4j_vector_index.as_retriever(k=10),
+    )
 
-        vector_chain.combine_documents_chain.llm_chain.prompt = review_prompt
-    except IndexError as e:
-        logger.error(f"IndexError in setting up vector chain: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Error setting up vector chain: {e}")
-        raise
+    vector_chain.combine_documents_chain.llm_chain.prompt = review_prompt
 
     return vector_chain
-
 
 def run_query(vector_chain, query):
     logger.info("Starting query...")
     start_time = time.time()
-    try:
-        response = vector_chain.invoke(query)
-    except Exception as e:
-        logger.error(f"Error during query execution: {e}")
-        raise
+    response = vector_chain.invoke(query)
     end_time = time.time()
     response_time = end_time - start_time
     logger.info(f"Response time: {response_time} seconds")
-    return response.get("result")
 
-# if __name__ == "__main__":
-#     logger.info("Setting up...")
-#     try:
-#         vector_chain = setup_vector_chain()
-#         # query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
-#         query = "Rumah sakit mana yang mendapat review positif?"
-#         response = run_query(vector_chain, query)
-#         logger.info(f"Response: {response}")
-#     except Exception as e:
-#         logger.error(f"Error in main execution: {e}")
+    if response and "result" in response:
+        return response.get("result")
+    else:
+        logger.warning("No result found in response")
+        return None
+
+if __name__ == "__main__":
+    logger.info("Setting up...")
+    try:
+        vector_chain = setup_vector_chain()
+        query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
+        response = run_query(vector_chain, query)
+        if response:
+            print(response)
+        else:
+            print("No response received.")
+    except Exception as e:
+        logger.error(f"Error in main execution: {e}")
