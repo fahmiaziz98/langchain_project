@@ -120,12 +120,13 @@ def run_query(vector_chain, query):
     logger.info(f"Response time: {response_time} seconds")
     return response.get("result")
 
-if __name__ == "__main__":
-    logger.info("Setting up...")
-    try:
-        vector_chain = setup_vector_chain()
-        query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
-        response = run_query(vector_chain, query)
-        logger.info(f"Response: {response}")
-    except Exception as e:
-        logger.error(f"Error in main execution: {e}")
+# if __name__ == "__main__":
+#     logger.info("Setting up...")
+#     try:
+#         vector_chain = setup_vector_chain()
+#         # query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
+#         query = "Rumah sakit mana yang mendapat review positif?"
+#         response = run_query(vector_chain, query)
+#         logger.info(f"Response: {response}")
+#     except Exception as e:
+#         logger.error(f"Error in main execution: {e}")
