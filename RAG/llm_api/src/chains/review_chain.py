@@ -135,15 +135,16 @@ def run_query(vector_chain, query):
         logger.warning("No result found in response")
         return None
 
-# if __name__ == "__main__":
-#     logger.info("Setting up...")
-#     try:
-#         vector_chain = setup_vector_chain()
-#         query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
-#         response = run_query(vector_chain, query)
-#         if response:
-#             print(response)
-#         else:
-#             print("No response received.")
-#     except Exception as e:
-#         logger.error(f"Error in main execution: {e}")
+if __name__ == "__main__":
+    logger.info("Setting up...")
+    try:
+        vector_chain = setup_vector_chain()
+        # query = """What have patients said about hospital efficiency? Mention details from specific reviews."""
+        query = """ I'd like to know what the reviews of patients treated by physician Jennifer Mccall are."""
+        response = run_query(vector_chain, query)
+        if response:
+            print(response)
+        else:
+            print("No response received.")
+    except Exception as e:
+        logger.error(f"Error in main execution: {e}")
