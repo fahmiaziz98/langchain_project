@@ -2,7 +2,7 @@
 <img src="llm.avif">
 
 ## Understand the Problem and Requirements
-**Note:** For research, we will use number data 20 each data like review, etc, Because Cohere Embedding have a limit
+**Note:** For research, we will use a total of 20 data for each data such as reviews, etc. Because Cohere Embedding has a limit, and some queries cannot be executed and error.
 
 We want answers to ad-hoc questions about patients, visits, doctors, hospitals, and insurance payers without having to understand SQL-like query languages, request reports from analysts, or wait for someone to build dashboards.
 To accomplish this, stakeholders wanted an internal chatbot tool, similar to ChatGPT, that could answer questions about company data. After meeting to gather requirements, we came up with a list of the types of questions the chatbot should answer:
