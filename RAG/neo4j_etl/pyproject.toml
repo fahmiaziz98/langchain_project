@@ -3,7 +3,11 @@ name = "neo4j_etl"
 version = "0.1"
 dependencies = [
    "neo4j==5.14.1",
-   "retry==0.9.2"
+   "retry==0.9.2",
+   "langchain-community==0.0.38",
+   "langchain-cohere==0.1.4",
+   "cohere==5.4.0",
+   "langchain==0.1.20"
 ]
 
 [project.optional-dependencies]
