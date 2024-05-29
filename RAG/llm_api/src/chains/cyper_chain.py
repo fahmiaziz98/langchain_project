@@ -1,13 +1,10 @@
 import os
 import logging
-from dotenv import load_dotenv, find_dotenv
 from langchain_community.graphs.neo4j_graph import Neo4jGraph
 from langchain.chains.graph_qa.cypher import GraphCypherQAChain
 from langchain_cohere import ChatCohere
 from langchain.prompts import PromptTemplate
 
-
-load_dotenv(find_dotenv())
 HOSPITAL_QA_MODEL = os.getenv("HOSPITAL_QA_MODEL")
 HOSPITAL_CYPHER_MODEL = os.getenv("HOSPITAL_CYPHER_MODEL")
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
@@ -163,45 +160,42 @@ qa_prompt = PromptTemplate(
 
 
 # Create the CypherQAChain
-def create_cypher_qa_chain(graph=graph, qa_prompt=qa_prompt, cypher_prompt=cypher_prompt):
+def create_cypher_qa_chain(
+    graph: Neo4jGraph = graph,
+    qa_prompt: PromptTemplate = qa_prompt,
+    cypher_prompt: PromptTemplate = cypher_prompt,
+) -> GraphCypherQAChain:
+    """
+    Creates a CypherQAChain that can be used to answer questions
+    about a graph using Cypher queries.
+
+    Args:
+        graph: The graph to be queried
+        qa_prompt: The prompt template for the QA model
+        cypher_prompt: The prompt template for the Cypher model
+
+    Returns:
+        A GraphCypherQAChain that can be used to answer questions
+        about the graph
+    """
     return GraphCypherQAChain.from_llm(
         cypher_llm=ChatCohere(
-            model=HOSPITAL_CYPHER_MODEL, 
+            model=HOSPITAL_CYPHER_MODEL,
             cohere_api_key=COHERE_API_KEY,
-            temperature=0.1
+            temperature=0.1,
+            streaming=True,
         ),
         qa_llm=ChatCohere(
             model=HOSPITAL_QA_MODEL,
             cohere_api_key=COHERE_API_KEY,
-            temperature=0.1
+            temperature=0.1,
+            streaming=True,
         ),
         graph=graph,
         verbose=True,
         qa_prompt=qa_prompt,
         cypher_prompt=cypher_prompt,
         validate_cypher=True,
-        top_k=50
+        top_k=50,
     )
 
-if __name__ == "__main__":
-    
-    cypher_qa_chain = create_cypher_qa_chain()
-    # Example query (replace with actual query)
-    
-    # This would be your query handling process
-    try:
-        # question = """I need information about the visit on 2022-03-08 such as chief complaint, treatment and payment status."""
-        # question ="""
-        #     I was looking for a patient but forgot his name, 
-        #     I only know his date of birth is 1989-01-26 and his blood type is AB+. 
-        #     And is he still being treated and in which room?
-        # """
-        # question = """
-        #     I want to know how many admission type emegencies there are and what their status is.
-        # """
-        question = "how many patients did Jason Williams treat while working at the hospital"
-        response = cypher_qa_chain.invoke(question)
-        res = response.get("result")
-        print(f"Query Result: {res}")
-    except Exception as e:
-        logger.error(f"Error processing query: {e}")
