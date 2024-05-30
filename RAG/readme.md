@@ -34,6 +34,7 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 
 ## Resouces
 - [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
+- [Prompt Engineering](https://realpython.com/practical-prompt-engineering/)
 - [5 pragmatic strategies for cost optimization with llm](https://www.metadocs.co/2024/04/03/5-pragmatic-strategies-for-cost-optimization-with-llm/)
 - [Github sauravjoshi23](https://github.com/sauravjoshi23/towards-agi/)
 - [Github tomasonjo](https://github.com/tomasonjo/langchain2neo4j)
