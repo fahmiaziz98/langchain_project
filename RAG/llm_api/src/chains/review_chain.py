@@ -10,6 +10,8 @@ from langchain.prompts import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 HOSPITAL_QA_MODEL = os.getenv("HOSPITAL_QA_MODEL")
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")

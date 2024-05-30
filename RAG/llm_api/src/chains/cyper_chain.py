@@ -4,6 +4,8 @@ from langchain_community.graphs.neo4j_graph import Neo4jGraph
 from langchain.chains.graph_qa.cypher import GraphCypherQAChain
 from langchain_cohere import ChatCohere
 from langchain.prompts import PromptTemplate
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 HOSPITAL_QA_MODEL = os.getenv("HOSPITAL_QA_MODEL")
 HOSPITAL_CYPHER_MODEL = os.getenv("HOSPITAL_CYPHER_MODEL")
