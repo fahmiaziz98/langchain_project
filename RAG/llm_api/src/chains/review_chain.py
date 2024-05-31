@@ -13,7 +13,7 @@ from langchain.prompts import (
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
-HOSPITAL_QA_MODEL = os.getenv("HOSPITAL_QA_MODEL")
+QA_MODEL = os.getenv("QA_MODEL")
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
@@ -124,7 +124,7 @@ def setup_vector_chain():
     # Create a retrieval QA model with the Neo4j vector index and a Cohere chat model
     vector_chain = RetrievalQA.from_chain_type(
         llm=ChatCohere(
-            model=HOSPITAL_QA_MODEL,
+            model=QA_MODEL,
             cohere_api_key=COHERE_API_KEY,
             temperature=0.1
         ),
