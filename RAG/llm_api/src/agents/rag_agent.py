@@ -107,5 +107,5 @@ def agent_executor() -> AgentExecutor:
         verbose=True,
     )
 
-if __name__ == "__main__":
-    agent = agent_executor()
+# if __name__ == "__main__":
+#     agent = agent_executor()
