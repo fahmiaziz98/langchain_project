@@ -91,11 +91,11 @@ def agent_executor() -> AgentExecutor:
             temperature=0.1,
             streaming=True,
         )
-    prompt = hub.pull("hwchase17/react")
+   
     # Create the chat agent with the tools and the chat model.
     rag_agent = create_react_agent(
         llm=chat_model,
-        prompt=prompt,
+        prompt=hub.pull("hwchase17/react"),
         tools=tools,
     )
 
@@ -106,3 +106,6 @@ def agent_executor() -> AgentExecutor:
         return_intermediate_steps=True,
         verbose=True,
     )
+
+if __name__ == "__main__":
+    agent = agent_executor()
