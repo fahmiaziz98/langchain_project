@@ -10,3 +10,5 @@ langserve
 sse_starlette
 fastapi
 uvicorn
+
+GROQ_API_KEY = "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"

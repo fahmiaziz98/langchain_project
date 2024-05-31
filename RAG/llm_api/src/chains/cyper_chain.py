@@ -2,14 +2,13 @@ import os
 import logging
 from langchain_community.graphs.neo4j_graph import Neo4jGraph
 from langchain.chains.graph_qa.cypher import GraphCypherQAChain
-from langchain_cohere import ChatCohere
+from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
-HOSPITAL_QA_MODEL = os.getenv("HOSPITAL_QA_MODEL")
-HOSPITAL_CYPHER_MODEL = os.getenv("HOSPITAL_CYPHER_MODEL")
-COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+GROQ_CYPHER_MODEL = os.getenv("GROQ_CYPHER_MODEL")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
@@ -181,15 +180,15 @@ def create_cypher_qa_chain(
         about the graph
     """
     return GraphCypherQAChain.from_llm(
-        cypher_llm=ChatCohere(
-            model=HOSPITAL_CYPHER_MODEL,
-            cohere_api_key=COHERE_API_KEY,
+        cypher_llm=ChatGroq(
+            model=GROQ_CYPHER_MODEL,
+            api_key=GROQ_API_KEY,
             temperature=0.1,
             streaming=True,
         ),
-        qa_llm=ChatCohere(
-            model=HOSPITAL_QA_MODEL,
-            cohere_api_key=COHERE_API_KEY,
+        qa_llm=ChatGroq(
+            model=GROQ_CYPHER_MODEL,
+            api_key=GROQ_API_KEY,
             temperature=0.1,
             streaming=True,
         ),

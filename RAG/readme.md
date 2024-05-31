@@ -34,6 +34,7 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 
 ## Resouces
 - [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
+- [Generating value from enterprise data: Best practices for Text2SQL and generative AI](https://aws.amazon.com/blogs/machine-learning/generating-value-from-enterprise-data-best-practices-for-text2sql-and-generative-ai/#:~:text=You%20can%20use%20supervised%20fine,prompt%20the%20target%20SQL%20syntax.)
 - [Prompt Engineering](https://realpython.com/practical-prompt-engineering/)
 - [5 pragmatic strategies for cost optimization with llm](https://www.metadocs.co/2024/04/03/5-pragmatic-strategies-for-cost-optimization-with-llm/)
 - [Github sauravjoshi23](https://github.com/sauravjoshi23/towards-agi/)
