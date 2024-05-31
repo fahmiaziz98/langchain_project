@@ -1,14 +1,20 @@
 import os
 from langchain_cohere import ChatCohere
-from langchain.agents import Tool, AgentExecutor
+from langchain import hub
+from langchain.agents import Tool, AgentExecutor, create_react_agent
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_cohere.react_multi_hop.agent import create_cohere_react_agent
+# from langchain_cohere.react_multi_hop.agent import create_cohere_react_agent
 
-from chains.review_chain import setup_vector_chain
-from chains.cyper_chain import create_cypher_qa_chain
-from tools.wait_times import get_current_wait_times, get_most_available_hospital
+from llm_api.src.chains.review_chain import setup_vector_chain
+from llm_api.src.chains.cyper_chain import create_cypher_qa_chain
+from llm_api.src.tools.wait_times import get_current_wait_times, get_most_available_hospital
 from dotenv import load_dotenv, find_dotenv
+
+from langchain_groq import ChatGroq
+
 load_dotenv(find_dotenv())
+AGENT_MODEL = os.getenv("AGENT_MODEL")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 HOSPITAL_AGENT_MODEL = os.getenv("HOSPITAL_AGENT_MODEL")
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
@@ -19,27 +25,25 @@ tools = [
     Tool(
         name="Experiences",
         func=reviews_vector_chain.invoke,
-        description="""Useful when you need to answer questions
-        about patient experiences, feelings, or any other qualitative
-        question that could be answered about a patient using semantic
-        search. Not useful for answering objective questions that involve
-        counting, percentages, aggregations, or listing facts. Use the
-        entire prompt as input to the tool. For instance, if the prompt is
-        "Are patients satisfied with their care?", the input should be
-        "Are patients satisfied with their care?".
+        description="""Use this tool to answer questions related to patient 
+        experiences, reviews, feelings, or any other qualitative information about a patient. 
+        This tool leverages semantic search to provide insights from reviews. 
+
+        Note:
+        - This tool is NOT suitable for answering objective questions that involve counting, percentages, aggregations, or listing factual data.
+        - Provide the entire question as input to the tool. For example, for the question "Are patients satisfied with their care?", the input should be exactly "Are patients satisfied with their care?".
         """,
     ),
     Tool(
         name="Graph",
         func=hospital_cypher_chain.invoke,
-        description="""Useful for answering questions about patients,
-        physicians, hospitals, insurance payers, patient review
-        statistics, and hospital visit details. Use the entire prompt as
-        input to the tool. For instance, if the prompt is "How many visits
-        have there been?", the input should be "How many visits have
-        there been?".
+        description="""Use this tool to answer questions about patients, physicians, hospitals, insurance payers, patient review statistics, and hospital visit details. 
+
+        Note:
+        - Provide the entire question as input to the tool. For example, if the question is "How many visits have there been?", the input should be exactly "How many visits have there been?".
         """,
     ),
+
     Tool(
         name="Waits",
         func=get_current_wait_times,
@@ -81,17 +85,17 @@ def agent_executor() -> AgentExecutor:
     accurate and predictable responses.
     """
     # Create the chat model with a temperature of 0.1.
-    chat_model = ChatCohere(
-        model=HOSPITAL_AGENT_MODEL,
-        temperature=0.1,
-        cohere_api_key=COHERE_API_KEY,
-        streaming=True,
-    )
-
+    chat_model = ChatGroq(
+            model=AGENT_MODEL,
+            api_key=GROQ_API_KEY,
+            temperature=0.1,
+            streaming=True,
+        )
+    prompt = hub.pull("hwchase17/react")
     # Create the chat agent with the tools and the chat model.
-    rag_agent = create_cohere_react_agent(
+    rag_agent = create_react_agent(
         llm=chat_model,
-        prompt=ChatPromptTemplate.from_template("{input}"),
+        prompt=prompt,
         tools=tools,
     )
 
