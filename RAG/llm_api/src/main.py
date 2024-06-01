@@ -13,7 +13,7 @@ app = FastAPI(
     openapi_url="/openapi.json",
 )
 
-@async_retry(max_retries=10, delay=1)
+@async_retry(max_retries=5, delay=1)
 async def invoke_agent_with_retry(query: str):
     agent = agent_executor()
     return await agent.ainvoke({"input": query})
