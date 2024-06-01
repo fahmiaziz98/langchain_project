@@ -7,9 +7,9 @@ services:
     env_file:
       - .env
 
-## -----------+++++-----------------##
+## -----------+++++---------------##
 
-  chatbot_api:
+  llm_api:
     build:
       context: ./llm_api
     env_file:
@@ -18,3 +18,14 @@ services:
       - neo4j_etl
     ports:
       - "8000:8000"
+
+## -----------+++++---------------##
+  llm_ui:
+    build:
+      context: ./llm_ui
+    env_file:
+      - .env
+    depends_on:
+      - llm_api
+    ports:
+      - "8501:8501"
