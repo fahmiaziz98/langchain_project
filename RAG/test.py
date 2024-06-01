@@ -7,19 +7,15 @@ CHATBOT_URL = "http://127.0.0.1:8000/rag-agent"
 
 questions = [
    "What is the current wait time at Wallace-Hamilton hospital?",
-   "Which hospital has the shortest wait time?",  # <--ini error
-   "At which hospitals are patients complaining about billing and insurance issues?",
-   "What is the average duration in days for emergency visits?", # <--ini error
+   "Which hospital has the shortest wait time?",  
    "What are patients saying about the nursing staff at Castaneda-Hardy?",
    "What was the total billing amount charged to each payer for 2023?",
-   "What is the average billing amount for Medicaid visits?",  # <--ini error
    "How many patients has Dr. Ryan Brown treated?",
    "Which physician has the lowest average visit duration in days?", # <--ini error
    "How many visits are open and what is their average duration in days?",
    "Have any patients complained about noise?",
    "How much was billed for patient 789's stay?",
    "Which physician has billed the most to cigna?",
-   "Query the graph database to show which states had the largest percentage increase in Medicaid visits from 2022 to 2023?"
 ]
 
 
