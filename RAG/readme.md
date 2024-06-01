@@ -1,5 +1,5 @@
 # Hospital Chatbot
-<img src="llm.avif">
+<img src="img/llm.avif">
 
 ## Understand the Problem and Requirements
 **Note:** For research, we will use a total of 20 data for each data such as reviews, etc. Because Cohere Embedding has a limit, and some queries cannot be executed and error.
@@ -22,15 +22,36 @@ To accomplish this, stakeholders wanted an internal chatbot tool, similar to Cha
 - What’s the average billing amount for emergency visits by hospital?
 - Which state had the largest percent increase inedicaid visits from 2022 to 2023?
 
+## Graph 
+<img src="img/nodes.png">
+
+------
+
+This diagram shows you all the nodes and relationships in the hospital system data. One useful way to think about this flowchart is to start from the Patient node and follow the relationships. A Patient makes a visit to the hospital, and the hospital hires a doctor to handle the visit which is covered by the insurance payer. 
+
+## How to Use
+1. Copy the example environment file to configure your environment:
+    ```bash
+    cp .env.default .env
+    ```
+2. Build and run the application using Docker Compose:
+    ```bash
+    docker-compose up --build
+    ```
+
 ## Tech Stack
 - Python 3.10.11
 - Langchain
 - Cohere LLM
+- Groq Llama 3 
 - Neo4j Database
 - FastAPI (Backend)
 - Streamlit (Frontend)
 
 *This is a common theme in AI and ML projects—most of the work is in design, data preparation, and deployment rather than building the AI itself.*
+
+## UI
+<img src="img/chatbot.png">
 
 ## Resouces
 - [Neo4j Docs](https://neo4j.com/docs/getting-started/cypher-intro/cypher-sql/)
